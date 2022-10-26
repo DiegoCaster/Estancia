@@ -58,6 +58,7 @@ function listar_paciente(){
    $('input.global_filter').on( 'keyup click', function () {
         filterGlobal();
     } );
+    
     $('input.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).parents('tr').attr('data-column') );
     });
@@ -230,7 +231,7 @@ function Registrar_Paciente(){
                     tablepaciente.ajax.reload();
                 }); 
             }else{
-                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el nombre del usuario ya se encuentra en nuestra base de datos","warning");
+                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el nombre del paciente ya se encuentra en nuestra base de datos","warning");
             }
         }else{
             Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar el registro","error");

@@ -42,12 +42,10 @@
             }
         }
 
-        /*function Modificar_Medico($idmedico,$nombre,$direccion,$movil,$sexo,$fenac,
-        $nrodocumentoactual,$nrodocumentonuevo,$colegiaturaactual,$colegiaturanuevo,$especialidad,
-        $idusuario,$email){
-            $sql = "call SP_MODIFICAR_MEDICO('$idmedico','$nombre','$apepat','$apemat','$direccion','$movil',
-            '$sexo','$fenac','$nrodocumentoactual','$nrodocumentonuevo','$colegiaturaactual','$colegiaturanuevo','$especialidad','$usu','$contra',
-            '$rol','$email',)";
+        function Modificar_Medico($idmedico,$nombre,$direccion,$movil,$sexo,$fenac,
+        $nrodocumentoactual,$nrodocumentonuevo,$colegiaturaactual,$colegiaturanuevo,$especialidad,$idusuario,$email){
+            $sql = "call SP_MODIFICAR_MEDICO('$idmedico','$nombre','$direccion','$movil','$sexo','$fenac',
+            '$nrodocumentoactual','$nrodocumentonuevo','$colegiaturaactual','$colegiaturanuevo','$especialidad','$idusuario','$email')";
             if ($consulta = $this->conexion->conexion->query($sql)){
                 if($row = mysqli_fetch_array($consulta)){
                     return $id = trim($row[0]);//retorna valores
@@ -56,7 +54,7 @@
             }
         }
 
-        function Modificar_Insumo($id,$insumoactual,$insumonuevo,$stock,$estatus){
+        /*function Modificar_Insumo($id,$insumoactual,$insumonuevo,$stock,$estatus){
             $sql = "call SP_MODIFICAR_INSUMO('$id','$insumoactual','$insumonuevo','$stock','$estatus')";
             if ($consulta = $this->conexion->conexion->query($sql)){
                 if($row = mysqli_fetch_array($consulta)){

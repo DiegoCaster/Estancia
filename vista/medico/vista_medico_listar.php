@@ -185,7 +185,7 @@
                     </div>
                     <div class="col-lg-4">
                         <label for="">Nro colegiatura</label>
-                        <input type="text" id="txt_ncol_editar_actual">
+                        <input type="text" id="txt_ncol_editar_actual" hidden>
                         <input type="text" class="form-control" id="txt_ncol_editar_nuevo" placeholder="Ingresar numero de colegiatura" onkeypress="return soloNumeros(event)"><br><br>
                     </div>
                     <div class="col-lg-12" style="text-aling:center">

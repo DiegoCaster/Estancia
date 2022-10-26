@@ -77,7 +77,7 @@ $('#tabla_medico').on('click','.editar',function(){
     $("#id_usuario").val(data.usu_id);
     $("#txt_usu_editar").val(data.usu_nombre);
     $("#cmb_rol_editar").val(data.rol_id).trigger("change");
-    $("#txt_email_editar").val(data.usu_mail);
+    $("#txt_email_editar").val(data.usu_email);
 })
 
 function filterGlobal(){
@@ -102,7 +102,9 @@ function listar_combo_rol(){
         var cadena="";
         if(data.length>0){
             for(var i=0; i < data.length; i++){
-                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                if([i][0]=='2'){
+                    cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                }
             }
             $("#cbm_rol").html(cadena);
             $("#cbm_rol_editar").html(cadena);
@@ -148,12 +150,12 @@ function Registrar_Medico(){
     var contra = $("#txt_contra").val();
     var rol = $("#cbm_rol").val();
     var email = $("#txt_email").val();
-    /*var validaremail=$("#validar_email").val();
+    var validaremail=$("#validar_email").val();
 
     if(validaremail=="incorrecto"){
         return Swal.fire('Mensaje de advertencia', 'El email ingresado no tiene el formato correcto', 
         'warning');
-    }*/
+    }
 
     if(nombre.length==0 || direccion.length==0 || movil.length==0 || sexo.length==0 || 
         fenac.length==0 || nrodocumento.length==0 || colegiatura.length==0 ||
@@ -183,13 +185,13 @@ function Registrar_Medico(){
         if(resp>0){
             if(resp==1){
                 $("#modal_registro").modal('hide');
-                return Swal.fire("Mensaje De Confirmacion","Nuevo Paciente Registrado","success")            
+                return Swal.fire("Mensaje De Confirmacion","Nuevo Medico Registrado","success")            
                 .then ( ( value ) =>  {
                     LimpiarCampos();
-                    tablepaciente.ajax.reload();
+                    tablemedico.ajax.reload();
                 }); 
             }else{
-                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el nombre del usuario ya se encuentra en nuestra base de datos","warning");
+                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el nombre del paciente ya se encuentra en nuestra base de datos","warning");
             }
         }else{
             Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar el registro","error");
@@ -197,7 +199,7 @@ function Registrar_Medico(){
     })
 }
 
-/*function Editar_Medico(){
+function Editar_Medico(){
     var idmedico = $("#id_medico").val();
     var nombre = $("#txt_nombres_editar").val();
     var direccion = $("#txt_direccion_editar").val();
@@ -211,47 +213,56 @@ function Registrar_Medico(){
     var especialidad = $("#cbm_especialidad_editar").val();
     var idusuario = $("#id_usuario").val();
     var email = $("#txt_email_editar").val();
+    var validaremail=$("#validar_email_editar").val();
+
     if(validaremail=="incorrecto"){
         return Swal.fire('Mensaje de advertencia', 'El email ingresado no tiene el formato correcto', 
         'warning');
     }
-    if(nombre.length==0 || movil.length==0 || sexo.length==0 || fenac.length==0 || 
-        nrodocumentonuevo.length==0 || colegiaturanuevo.length==0 || 
-        especialidad.length==0 || email.length==0){
-           return Swal.fire("Mensaje de advertencia", "Llene todos los campos", "warning"); 
+
+    if(nombre.length==0 || direccion.length==0 || movil.length==0 || sexo.length==0 || fenac.length==0 || 
+        nrodocumentonuevo.length==0 || colegiaturanuevo.length==0 || especialidad.length==0 || email.length==0){
+        return Swal.fire("Mensaje de advertencia","Llene los campos vacios","warning");
+    }
+
+    $.ajax({
+        "url":"../controlador/medico/controlador_medico_modificar.php",
+        type:'POST',
+        data:{
+            idmedico:idmedico,
+            nombre:nombre,
+            direccion:direccion,
+            movil:movil,
+            sexo:sexo,
+            fenac:fenac,
+            nrodocumentoactual:nrodocumentoactual,
+            nrodocumentonuevo:nrodocumentonuevo,
+            colegiaturaactual:colegiaturaactual,
+            colegiaturanuevo:colegiaturanuevo,
+            especialidad:especialidad,
+            idusuario:idusuario,
+            email:email
         }
-        $.ajax({
-            "url":"../controlador/medico/controlador_medico_modificar.php",
-            type:'POST',
-            data:{
-                idmedico:idmedico,
-                nombre:nombre,
-                direccion:direccion,
-                movil:movil,
-                sexo:sexo,
-                fenac:fenac,
-                nrodocumentoactual:nrodocumentoactual,
-                nrodocumentonuevo:nrodocumentonuevo,
-                colegiaturaactual:colegiaturaactual,
-                colegiaturanuevo:colegiaturanuevo,
-                especialidad:especialidad,
-                idusuario:idusuario,
-                email:email
-            }
-        }).done(function(resp){
+    }).done(function(resp){
+        //alert(resp);
+        if(resp>0){
             if(resp==1){
-                    if(resp==1){
-                        $("#modal_editar").modal('hide');
-                        listar_medico();
-                        Swal.fire("Mensaje de confirmacion", "Datos actualizados correctamente", 
-                        "success");
-                    }else{
-                        Swal.fire("Mensaje de advertencia", "La colegiatura o el nuemero de documento ya esta en nuestra data", 
-                        "warning");
-                    }
-                }else{
-                    Swal.fire("Mensaje de advertencia", "La colegiatura o el nuemero de documento ya esta en nuestra data", 
-                    "warning");
-                }
-        })
-}*/
+                $("#modal_editar").modal('hide');
+                listar_medico();
+                //LimpiarCampos();
+                return Swal.fire("Mensaje De Confirmacion","Datos actualizados correctamente","success")
+                .then ( ( value ) =>  {
+                    tablemedico.ajax.reload();
+                }); 
+                
+                
+            }else{
+                //LimpiarCampos();
+                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el numero de documento ya se encuentra en nuestra base de datos","warning");
+            }
+        }else{
+            return Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar la actualizacion","error");
+        }
+    })
+}
+
