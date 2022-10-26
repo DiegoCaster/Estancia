@@ -261,7 +261,7 @@ function Editar_Medico(){
                 return Swal.fire("Mensaje De Advertencia","Lo sentimos, el numero de documento ya se encuentra en nuestra base de datos","warning");
             }
         }else{
-            return Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar la actualizacion","error");
+            return Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar la actualizacion","esrror");
         }
     })
 }
