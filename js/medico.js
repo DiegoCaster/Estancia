@@ -30,7 +30,7 @@ function listar_medico(){
            }     
         },
         {"data":"medico_movil"},
-           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-remove'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>"}
+           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i>"}
        ],
 
        "language":idioma_espanol,
@@ -181,17 +181,17 @@ function Registrar_Medico(){
             email:email
         }
     }).done(function(resp){
-        alert(resp);
+        //alert(resp);
         if(resp>0){
             if(resp==1){
                 $("#modal_registro").modal('hide');
                 return Swal.fire("Mensaje De Confirmacion","Nuevo Medico Registrado","success")            
                 .then ( ( value ) =>  {
-                    LimpiarCampos();
+                    //LimpiarCampos();
                     tablemedico.ajax.reload();
                 }); 
             }else{
-                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el nombre del paciente ya se encuentra en nuestra base de datos","warning");
+                return Swal.fire("Mensaje De Advertencia","Lo sentimos, el nombre de usuario ya se encuentra en nuestra base de datos","warning");
             }
         }else{
             Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar el registro","error");
