@@ -1,4 +1,4 @@
-var tablaconsulta;
+var tableconsulta;
 function listar_consulta(){
         var finicio = $("#txt_fechainicio").val();
         var ffin = $("#txt_fechafin").val();
@@ -152,7 +152,7 @@ function Editar_Consulta(){
                 $("#modal_editar").modal('hide');
                 if(resp==1){
                     Swal.fire("Mensaje De Confirmacion","Datos editados correctamente","success");
-                    tablaconsulta.ajax.reload();
+                    tableconsulta.ajax.reload();
                 }
         }else{
             Swal.fire("Mensaje De Error","Lo sentimos, no se pudieron editar los datos","error");

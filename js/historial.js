@@ -1,10 +1,9 @@
-var tablahistorial;
+var tablehistorial;
 function listar_historial(){
         var finicio = $("#txt_fechainicio").val();
         var ffin = $("#txt_fechafin").val();
       tablehistorial = $("#tabla_historial").DataTable({
        "ordering":false,
-       "bLengthChange":false,
        "bLengthChange":true,
        "searching": { "regex": true },
        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
@@ -26,9 +25,9 @@ function listar_historial(){
            {"data":"fua_feregistro"},
            {"data":"paciente_folio"},
            {"data":"paciente_nombre"},
-           {"data":"medico_nombre"},
-           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"}
-        ],
+           {"defaultContent":"<button style='font-size:13px;' type='button' class='diagnostico btn btn-default' title='diagnostico'><i class='fa fa-eye'></i></button>&nbsp;"},
+           {"defaultContent":"<button style='font-size:13px;' type='button' class='verdetalles btn btn-default' title='detalles'><i class='fa fa-eye'></i></button>&nbsp;"}
+       ],
 
        "language":idioma_espanol,
        select: true
@@ -56,5 +55,8 @@ $('#tabla_historial').on('click','.editar',function(){
     }
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
-    $("#txt_historial_id").val(data.historial_id);
+    $("#txt_consulta_id").val(data.consulta_id);
+    $("#txt_paciente_consulta_editar").val(data.paciente_nombre);
+    $("#txt_descripcion_consulta_editar").val(data.consulta_descripcion);
+    $("#txt_diagnostico_consulta_editar").val(data.consulta_diagnostico);
 })
