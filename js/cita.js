@@ -2,7 +2,7 @@ var tablecita;
 function listar_cita(){
       tablecita = $("#tabla_cita").DataTable({
        "ordering":false,
-       "paging": false,
+       "bLengthChange":false,
        "searching": { "regex": true },
        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
        "pageLength": 10,
@@ -141,10 +141,11 @@ function listar_doctor_combo(id){
 function Registrar_Cita(){
     var idpaciente = $("#cbm_paciente").val();
     var iddoctor = $("#cbm_doctor").val();
+    var idespecialidad = $("#cbm_especialidad").val();
     var descripcion = $("#txt_descripcion").val();
     var idusuario = $("#txtidprincipal").val();
 
-    if(idpaciente.length==0 || iddoctor.length==0 || descripcion.length==0){
+    if(idpaciente.length==0 || iddoctor.length==0 || idespecialidad.length==0 ||descripcion.length==0){
         return Swal.fire("Mensaje de advertencia","Llene los campos vacios","warning");
     }
 
@@ -154,6 +155,7 @@ function Registrar_Cita(){
         data:{
             idpa:idpaciente,
             iddo:iddoctor,
+            ides:idespecialidad,
             descripcion:descripcion,
             idusuario:idusuario
         }
@@ -223,7 +225,10 @@ function listar_doctor_combo_editar(id,idmedico){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             $("#cbm_doctor_editar").html(cadena);
-            $("#cbm_doctor_editar").val(idmedico).trigger("change");
+            if(idmedico!=''){
+                $("#cbm_doctor_editar").val(idmedico).trigger("change");
+            }
+            
         }else{
             cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
             $("#cbm_doctor_editar").html(cadena);

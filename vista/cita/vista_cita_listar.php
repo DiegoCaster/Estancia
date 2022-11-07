@@ -1,8 +1,8 @@
-<script type="text/javascript" src="../js/historial.js?rev=<?php echo time();?>"></script>
+<script type="text/javascript" src="../js/cita.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
     <div class="box box-warning box-solid">
         <div class="box-header with-border">
-              <h3 class="box-title">MANTENIMIENTO DE HISTORIAL CLINICO</h3>
+              <h3 class="box-title">MANTENIMIENTO DE CITA</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -13,42 +13,37 @@
             <!-- /.box-header -->
             <div class="box-body">
             <div class="form-group">
-                <div class="col-lg-4">
-                    <label for="">Fecha inicio</label><br>
-                    <input type="date" name="" id="txt_fechainicio" class="form_control">
-                </div>
-                <div class="col-lg-4">
-                    <label for="">Fecha fin</label><br>
-                    <input type="date" name="" id="txt_fechafin" class="form_control">
+                <div class="col-lg-10">
+                    <div class="input-group">
+                        <input type="text" class="global_filter form-control" id="global_filter" placeholder="Ingresar dato a buscar">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    </div>
                 </div>
                 <div class="col-lg-2">
-                    <label for="">&nbsp;</label><br>
-                    <button class="btn btn-success" style="width:100%" onclick="listar_consulta()"><i class="glyphicon glyphicon-search"></i>Buscar</button>
-                </div>
-                <div class="col-lg-2">
-                    <label for="">&nbsp;</label><br>
                     <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Nuevo Registro</button>
                 </div>
             </div>
-            <table id="tabla_historial" class="display responsive nowrap" style="width:100%">
+            <table id="tabla_cita" class="display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Nro</th>
                         <th>Fecha</th>
-                        <th>Folio</th>
                         <th>Paciente</th>
-                        <th>Doctor</th>
-                        <th>Acción</th>
+                        <th>Medico</th>
+                        <th>Estatus</th>
+                        <th>Acci&oacute;n</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
+                        <th>Nro</th>
                         <th>Fecha</th>
-                        <th>Folio</th>
                         <th>Paciente</th>
-                        <th>Doctor</th>
-                        <th>Acción</th>
+                        <th>Medico</th>
+                        <th>Estatus</th>
+                        <th>Acci&oacute;n</th>
                     </tr>
                 </tfoot>
             </table>
@@ -148,23 +143,23 @@
 <script>
 
 $(document).ready(function() {
+    listar_cita();
+    listar_paciente_combo();
+    listar_especialidad_combo();
+    listar_paciente_combo_editar();
+    listar_especialidad_combo_editar();
+    $( "#cbm_especialidad" ).change(function() {
+      var id = $("#cbm_especialidad").val();
+      listar_doctor_combo(id);
+});
+$( "#cbm_especialidad_editar" ).change(function() {
+      var idespecialidad = $("#cbm_especialidad_editar").val();
+      listar_doctor_combo_editar(idespecialidad,'');
+});
     $('.js-example-basic-single').select2();
-    var n = new Date();
-    var y = n.getFullYear();
-    var m = n.getMonth()+1;
-    var d = n.getDate();
-    if(d<10){
-        d='0'+d;
-    }
-    if(m<10){
-        d='0'+m;
-    } 
-    document.getElementById("txt_fechainicio").value=y+"-"+m+"-"+d;
-    document.getElementById("txt_fechafin").value=y+"-"+m+"-"+d;
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_cita").focus();  
-    });
-    listar_historial();
+    })
 } );
 
 $('.box').boxWinget({

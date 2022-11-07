@@ -2,7 +2,7 @@ var tablemedico;
 function listar_medico(){
     tablemedico = $("#tabla_medico").DataTable({
        "ordering":false,
-       "paging": false,
+       "bLengthChange":false,
        "searching": { "regex": true },
        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
        "pageLength": 10,

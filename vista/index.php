@@ -172,14 +172,20 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <a onclick="cargar_contenido('contenido_principal','c/vista_cita_listar.php')">
-            <i class="fa fa-cubes"></i> <span>Citas</span>
+          <a onclick="cargar_contenido('contenido_principal','cita/vista_cita_listar.php')">
+            <i class="fa fa-calendar-times-o "></i> <span>Citas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <a onclick="cargar_contenido('contenido_principal','consulta/vista_consulta_listar.php')">
+            <i class="fa fa-stethoscope "></i> <span>Consulta</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <a onclick="cargar_contenido('contenido_principal','historial/vista_historial_listar.php')">
-            <i class="fa fa-file-text-o"></i> <span>Historial Clinico</span>
+            <i class="fa fa-book"></i> <span>Historial Clinico</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

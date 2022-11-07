@@ -2,7 +2,7 @@ var tableinsumo;
 function listar_insumo(){
       tableinsumo = $("#tabla_insumo").DataTable({
        "ordering":false,
-       "paging": false,
+       "bLengthChange":false,
        "searching": { "regex": true },
        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
        "pageLength": 10,

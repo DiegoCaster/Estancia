@@ -2,7 +2,7 @@ var tablepaciente;
 function listar_paciente(){
     tablepaciente = $("#tabla_paciente").DataTable({
       "ordering":false,
-      "paging": false,
+      "bLengthChange":false,
       "searching": { "regex": true },
       "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
       "pageLength": 10,
