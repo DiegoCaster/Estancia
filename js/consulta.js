@@ -78,14 +78,15 @@ function filterGlobal() {
 
 function listar_paciente_combo_consulta(){
     $.ajax({
-        "url":"../controlador/cita/controlador_combo_paciente_listar.php",
+        "url":"../controlador/consulta/controlador_combo_paciente_cita_listar.php",
         type:'POST'
     }).done(function(resp){
+        //alert(resp);
         var data = JSON.parse(resp);
         var cadena="";
         if(data.length>0){
             for(var i=0; i < data.length; i++){
-                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                cadena+="<option value='"+data[i][0]+"'>Turno de atención: ("+data[i][1]+")"+" - Paciente: "+data[i][2]+"</option>";
             }
             $("#cbm_paciente_consulta").html(cadena);
         }else{
@@ -93,4 +94,71 @@ function listar_paciente_combo_consulta(){
             $("#cbm_paciente_consulta").html(cadena);
         }
     })
+}
+
+function Registrar_Consulta(){
+    var idpaciente = $("#cbm_paciente_consulta").val();
+    var descripcion = $("#txt_descripcion_consulta").val();
+    var diagnostico = $("#txt_diagnostico_consulta").val();
+
+    if(idpaciente.length==0 || descripcion.length==0 || diagnostico.length==0){
+        return Swal.fire("Mensaje de advertencia","Llene los campos vacios","warning");
+    }
+
+    $.ajax({
+        "url":"../controlador/consulta/controlador_consulta_registro.php",
+        type:'POST',
+        data:{
+            idpa:idpaciente,
+            descripcion:descripcion,
+            diagnostico:diagnostico
+        }
+    }).done(function(resp){
+        if(resp>0){
+                $("#modal_registro").modal('hide');
+                Swal.fire("Mensaje De Confirmacion","Datos guardados exitosamente, consulta registrada","success")
+                .then ( ( value ) =>  {
+                    LimpiarCampos();
+                    tableconsulta.ajax.reload();
+                }); 
+        }else{
+            Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar el registro","error");
+        }
+    })
+}
+
+function Editar_Cita(){
+    var idpaciente = $("#cbm_paciente_consulta_editar").val();
+    var descripcion = $("#txt_descripcion_consulta_editar").val();
+    var diagnostico = $("#txt_diagnostico_consulta_editar").val();
+
+    if(idpaciente.length==0 || descripcion.length==0 || diagnostico.length==0){
+        return Swal.fire("Mensaje de advertencia","Llene los campos vacios","warning");
+    }
+
+    $.ajax({
+        "url":"../controlador/consulta/controlador_consulta_editar.php",
+        type:'POST',
+        data:{
+            idpa:idpaciente,
+            descripcion:descripcion,
+            diagnostico:diagnostico
+        }
+    }).done(function(resp){
+        if(resp>0){
+                $("#modal_editar").modal('hide');
+                if(resp==1){
+                    tablaconsulta.ajax.reload();
+                    Swal.fire("Mensaje De Confirmacion","Datos editados correctamente","success");
+                }
+        }else{
+            Swal.fire("Mensaje De Error","Lo sentimos, no se pudieron editar los datos","error");
+        }
+    })
+}
+
+function LimpiarCampos(){
+    $("#cbm_paciente_consulta").val("");
+    $("#txt_descripcion_consulta").val("");
+    $("#txt_diagnostico_consulta").val("");
 }

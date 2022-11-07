@@ -27,7 +27,7 @@ function listar_cita(){
             }else if(data=='CANCELADA'){
                 return "<span class='label label-danger'>"+data+"</span>";                   
             }else{
-                return "<span class='label label-succes' style='background:black'>"+data+"</span>";                   
+                return "<span class='label label-success'>"+data+"</span>";                 
             }
           }
         },  

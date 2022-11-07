@@ -94,7 +94,7 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick=" Registrar_Cita()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick=" Registrar_Consulta()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -107,47 +107,33 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><b>Editar Cita</b></h4>
+            <h4 class="modal-title"><b>Registro De Consulta Medica</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <input type="text" id="txt_cita_id" hidden>
                         <label for="">Paciente</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_paciente_editar" style="width:100%;">
-                        </select><br><br>
-                    </div>
-                    <div class="col-lg-4">
-                    <label for="">Especialidad</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_especialidad_editar" style="width:100%;">
-                        </select><br><br>
-                    </div>
-                    <div class="col-lg-4">
-                    <label for="">Doctor</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_doctor_editar" style="width:100%;">
-                        </select><br><br>
-                    </div>
-                    <div class="col-lg-4">
-                    <label for="">Estatus</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_estatus" style="width:100%;">
-                        <option value="PENDIENTE">PENDIENTE</option>
-                        <option value="CANCELADA">CANCELADA</option>
-                        </select><br><br>
+                        <select class="js-example-basic-single" name="state" id="cbm_paciente_consulta_editar" style="width:100%;">
+                        </select><br>
                     </div>
                     <div class="col-lg-12"><br>
                     <label for="">Descripción</label>
-                        <textarea id="txt_descripcion_editar" rows="5" class="form-control" style="resize:none"></textarea>
+                        <textarea id="txt_descripcion_consulta_editar" rows="5" class="form-control" style="resize:none"></textarea>
+                    </div>
+                    <div class="col-lg-12"><br>
+                    <label for="">Diagnostico</label>
+                        <textarea id="txt_diagnostico_consulta_editar" rows="5" class="form-control" style="resize:none"></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick=" Editar_Cita()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick=" Registrar_Consulta()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
         </div>
-</div> 
+</div>  
 
 <script>
 
@@ -170,7 +156,7 @@ $(document).ready(function() {
         $("#txt_consulta").focus();  
     });
     listar_consulta();
-    
+    listar_paciente_combo_consulta();
 } );
 
 $('.box').boxWinget({
