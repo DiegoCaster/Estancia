@@ -41,8 +41,8 @@
             $this->conexion->cerrar();
         }
 
-       function Editar_Consulta($idpa,$descripcion,$diagnostico){
-            $sql = "call SP_MODIFICAR_CONSULTA('$idpa','$descripcion','$diagnostico')";
+       function Editar_Consulta($idconsulta,$descripcion,$diagnostico){
+            $sql = "call SP_MODIFICAR_CONSULTA('$idconsulta','$descripcion','$diagnostico')";
             if ($consulta = $this->conexion->conexion->query($sql)){
                 return 1;
             }else{

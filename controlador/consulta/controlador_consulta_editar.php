@@ -1,9 +1,9 @@
 <?php
     require '../../modelo/modelo_consulta.php';
     $MC = new Modelo_Consulta();//Instanciamos
-    $idpa = htmlspecialchars($_POST['idpa'],ENT_QUOTES,'UTF-8');
+    $idconsulta = htmlspecialchars($_POST['idconsulta'],ENT_QUOTES,'UTF-8');
     $descripcion = htmlspecialchars($_POST['descripcion'],ENT_QUOTES,'UTF-8');
     $diagnostico = htmlspecialchars($_POST['diagnostico'],ENT_QUOTES,'UTF-8');
-    $consulta = $MC->Editar_Consulta($idpa,$descripcion,$diagnostico);
+    $consulta = $MC->Editar_Consulta($idconsulta,$descripcion,$diagnostico);
     echo $consulta;
 ?>

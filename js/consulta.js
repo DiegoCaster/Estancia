@@ -68,6 +68,9 @@ $('#tabla_consulta').on('click','.editar',function(){
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
     $("#txt_consulta_id").val(data.consulta_id);
+    $("#txt_paciente_consulta_editar").val(data.paciente_nombre);
+    $("#txt_descripcion_consulta_editar").val(data.consulta_descripcion);
+    $("#txt_diagnostico_consulta_editar").val(data.consulta_diagnostico);
 })
 
 function filterGlobal() {
@@ -127,12 +130,12 @@ function Registrar_Consulta(){
     })
 }
 
-function Editar_Cita(){
-    var idpaciente = $("#cbm_paciente_consulta_editar").val();
+function Editar_Consulta(){
+    var idconsulta = $("#txt_consulta_id").val();
     var descripcion = $("#txt_descripcion_consulta_editar").val();
     var diagnostico = $("#txt_diagnostico_consulta_editar").val();
 
-    if(idpaciente.length==0 || descripcion.length==0 || diagnostico.length==0){
+    if(idconsulta.length==0 || descripcion.length==0 || diagnostico.length==0){
         return Swal.fire("Mensaje de advertencia","Llene los campos vacios","warning");
     }
 
@@ -140,7 +143,7 @@ function Editar_Cita(){
         "url":"../controlador/consulta/controlador_consulta_editar.php",
         type:'POST',
         data:{
-            idpa:idpaciente,
+            idconsulta:idconsulta,
             descripcion:descripcion,
             diagnostico:diagnostico
         }
@@ -148,8 +151,8 @@ function Editar_Cita(){
         if(resp>0){
                 $("#modal_editar").modal('hide');
                 if(resp==1){
-                    tablaconsulta.ajax.reload();
                     Swal.fire("Mensaje De Confirmacion","Datos editados correctamente","success");
+                    tablaconsulta.ajax.reload();
                 }
         }else{
             Swal.fire("Mensaje De Error","Lo sentimos, no se pudieron editar los datos","error");
