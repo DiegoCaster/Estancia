@@ -89,7 +89,7 @@ function listar_paciente_combo_consulta(){
         var cadena="";
         if(data.length>0){
             for(var i=0; i < data.length; i++){
-                cadena+="<option value='"+data[i][0]+"'>Turno de atención: ("+data[i][1]+")"+" - Paciente: "+data[i][2]+"</option>";
+                cadena+="<option value='"+data[i][0]+"'>NUMERO DE ATENCIÓN: &#160;"+data[i][1]+"&#160;&#160;&#160;&#160;&#160; - &#160;&#160;&#160;&#160;PACIENTE: &#160;"+data[i][2]+"</option>";
             }
             $("#cbm_paciente_consulta").html(cadena);
         }else{

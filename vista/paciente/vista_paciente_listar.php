@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-lg-4">
                         <label for="">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" name="txt_fenac" id="txt_fenac" value="" min="1901-01-01" max="3001-01-01"><br>
+                        <input type="text" class="form-control" name="txt_fenac" id="txt_fenac" value="" ><br>
                     </div>
                     <div class="col-lg-4">
                         <label for="">Edad</label>

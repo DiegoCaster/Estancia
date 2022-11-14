@@ -1,9 +1,7 @@
 <?php
     require '../../modelo/modelo_historial.php';
     $MH = new Modelo_Historial();//Instanciamos
-    $fechainicio = htmlspecialchars($_POST['fechainicio'],ENT_QUOTES,'UTF-8');
-    $fechafin = htmlspecialchars($_POST['fechafin'],ENT_QUOTES,'UTF-8');
-    $consulta = $MH->listar_historial($fechainicio,$fechafin);
+    $consulta = $MH->listar_historial();
     if($consulta){
         echo json_encode($consulta);
     }else{
