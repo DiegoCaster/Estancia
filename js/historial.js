@@ -62,7 +62,7 @@ function listar_paciente_combo_historial(){
         var cadena="";
         if(data.length>0){
             for(var i=0; i < data.length; i++){
-                cadena+="<option value='"+"'>PACIENTE: &#160;"+data[i][1]+"&#160;&#160;&#160;&#160;&#160; - &#160;&#160;&#160;&#160;CURP: &#160;"+data[i][14]+"</option>";
+                cadena+="<option value='"+data[i][0]+"'>PACIENTE: &#160;"+data[i][1]+"&#160;&#160;&#160;&#160;&#160; - &#160;&#160;&#160;&#160;CURP: &#160;"+data[i][14]+"</option>";
             }     
             $("#cbm_nombre").html(cadena);
         }else{
@@ -71,6 +71,8 @@ function listar_paciente_combo_historial(){
         }
     })
 }
+
+
 
 function Registrar_Historial(){
     //Datos del paciente
@@ -111,20 +113,19 @@ function Registrar_Historial(){
     var dato34 = $("#txt_pronostico").val();
     var dato35 = $("#txt_indicacion_terap").val();
     
-    /*if(nombres.length==0 || dato1.length==0 || dato2.length==0 || dato3.length==0 || dato4.length==0 || 
+    if(nombres.length==0 || dato1.length==0 || dato2.length==0 || dato3.length==0 || dato4.length==0 || 
         dato5.length==0 || dato6.length==0 || dato7.length==0 || dato8.length==0 || dato9.length==0 || dato10.length==0 || dato11.length==0 || 
         dato12.length==0 || dato13.length==0 || dato14.length==0 || dato15.length==0 || dato16.length==0 || dato17.length==0 || dato18.length==0 || 
         dato19.length==0 || dato20.length==0 || dato21.length==0 || dato22.length==0 || dato23.length==0 || dato24.length==0 || dato25.length==0 || 
         dato26.length==0 || dato27.length==0 || dato28.length==0 || dato29.length==0 || dato30.length==0 || dato31.length==0 || dato32.length==0 ||
         dato33.length==0 || dato34.length==0 || dato35.length==0){
         return Swal.fire("Mensaje de advertencia","Llene los campos vacios","warning");
-    }*/
+    }
 
     $.ajax({
         "url":"../controlador/historial/controlador_historial_registro.php",
         type:'POST',
         data:{
-            //Paciente
             nombres:nombres,
             dato1:dato1,
             dato2:dato2,
@@ -163,7 +164,7 @@ function Registrar_Historial(){
             dato35:dato35
         }
     }).done(function(resp){
-        alert(resp);
+        //alert(resp);
         if(resp>0){
                 $("#modal_registro").modal('hide');
                 Swal.fire("Mensaje De Confirmacion","Datos guardados exitosamente, historial registrado","success")
@@ -178,25 +179,6 @@ function Registrar_Historial(){
 }
 
 function LimpiarCampos(){
-    //Paciente
-    $("#txt_nombre").val("");
-    $("#txt_fenac").val("");
-    $("#txt_edad").val("");
-    $("#txt_sexo").val("");
-    $("#txt_relig").val("");
-    $("#txt_domi").val("");
-    $("#txt_tel").val("");
-    $("#txt_estciv").val("");
-    $("#txt_esco").val("");
-    $("#txt_ocup").val("");
-    $("#txt_lunac").val("");
-    $("#txt_resiact").val("");
-    $("#txt_da").val("");
-    $("#txt_curp").val("");
-    $("#txt_niveco").val("");
-    $("#txt_grupet").val("");
-    $("#txt_folio").val("");
-    //Historial clinico
     $("#txt_ant_heredofami").val("");
     $("#txt_ant_personopatolo").val("");
     $("#txt_ant_gineobs").val("");
@@ -211,18 +193,17 @@ function LimpiarCampos(){
     $("#txt_sistema_endocrino").val("");
     $("#txt_sistema_nervioso").val("");
     $("#txt_hemolinfatico").val("");
-    $$("#txt_sistema_ostemus").val("");
+    $("#txt_sistema_ostemus").val("");
     $("#txt_interro_esp").val("");
     $("#txt_habitus_exterior").val("");
     $("#txt_frecu_cardi").val("");
     $("#txt_tension_arterial").val("");
     $("#txt_frecu_respiratoria").val("");
     $("#txt_temperatura").val("");
-    $("#txt_").val("");
     $("#txt_peso").val("");
     $("#txt_talla").val("");
     $("#txt_icm").val("");
-    $("#txt_cabez").val("");
+    $("#txt_cabeza").val("");
     $("#txt_cuello").val("");
     $("#txt_torax").val("");
     $("#txt_abdomen").val("");
@@ -232,7 +213,7 @@ function LimpiarCampos(){
     $("#txt_resultados_labgab").val("");
     $("#txt_diagnosticos").val("");
     $("#txt_pronostico").val("");
-    $("#txt_indicacion_terap").val("")
+    $("#txt_indicacion_terap").val("");
 }
 
     
