@@ -165,16 +165,16 @@
                         <input type="text" class="form-control" id="txt_temperatura" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Peso</label>
-                        <input type="text" class="form-control" id="txt_peso" placeholder="Ingresar datos..." maxlength="50">
+                        <label for="">Peso(kg)</label>
+                        <input type="text" class="form-control" id="txt_peso" placeholder="Ingresar datos..." maxlength="50" onkeypress="calculoImc()">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Talla</label>
-                        <input type="text" class="form-control" id="txt_talla" placeholder="Ingresar datos..." maxlength="50"><br>
+                        <label for="">Talla(m)</label>
+                        <input type="text" class="form-control" id="txt_talla" placeholder="Ingresar datos..." maxlength="50" onkeypress="calculoImc()">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">ICM</label>
-                        <input type="text" class="form-control" id="txt_icm" placeholder="Ingresar datos..." maxlength="50"><br><br>
+                        <label for="">IMC</label>
+                        <input type="text" class="form-control" id="txt_icm" placeholder="Ingresar datos..." maxlength="50" readonly="">
                     </div>
                     <div class="col-lg-12" style="text-aling:center">
                         <b>EXPLORACION REGIONAL</b><br><br>
@@ -244,110 +244,186 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><b>Editar Paciente</b></h4>
+            <h4 class="modal-title"><b>Registro De Historial Clinico</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <input type="text" id="txt_idpaciente" hidden>
-                <div class="col-lg-4">
-                        <label for="">Folio</label>
-                        <input type="text" id="txt_folio_actual_editar" placeholder="Ingresar numero de documento..." hidden>
-                        <input type="text" class="form-control" id="txt_folio_nuevo_editar" placeholder="Ingresar numero de documento...">
+                <input type="text" id="txt_idhistorial" hidden>
+                    <div class="col-lg-12" style="text-aling:center">
+                        <!--<b>DATOS DEL PACIENTE</b><br><br>
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="">Nombre - Curp</label>
+                        <select class="js-example-basic-single" name="state" id="cbm_nombre_editar" style="width:100%;"></select><br><br>
+                    </div>-->
+                    <div class="col-lg-12" style="text-aling:center">
+                        <b>INTERROGATORIO POR APARATOS Y SISTEMAS</b><br><br>
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Nombre</label>
-                        <input type="text" class="form-control" id="txt_nombre_editar" placeholder="Ingresar nombre..." maxlength="50" onkeypress="return soloLetras(event)">
+                        <label for="">Antecedentes heredofamiliares</label>
+                        <input type="text" class="form-control" id="txt_ant_heredofami_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" name="txt_fenac_editar" id="txt_fenac_editar" value="" min="1901-01-01" max="3001-01-01"><br>
+                        <label for="">Antecedentes personales no patologicos</label>
+                        <input type="text" class="form-control" id="txt_ant_personopatolo_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Edad</label>
-                        <input type="text" class="form-control" name="txt_edad_editar" id="txt_edad_editar" value="" readonly="">
+                        <label for="">Antecedentes gineco-obstetricos</label>
+                        <input type="text" class="form-control" id="txt_ant_gineobs_editar" placeholder="Ingresar datos..." maxlength="50"><br>
                     </div>
                     <div class="col-lg-4">
-                    <label for="">Sexo</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_sexo_editar" style="width:100%;">
-                            <option value="M">MASCULINO</option>
-                            <option value="F">FEMENINO</option>
-                        </select><br><br>
+                        <label for="">Antecedentes personales no patologicos</label>
+                        <input type="text" class="form-control" id="txt_ant_persopatolo_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Religion</label>
-                        <input type="text" class="form-control" id="txt_relig_editar" placeholder="Ingresar religion..." maxlength="20" onkeypress="return soloLetras(event)"><br>
+                        <label for="">Padecimiento actual</label>
+                        <input type="text" class="form-control" id="txt_pade_actual_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Domicilio</label>
-                        <input type="text" class="form-control" id="txt_domi_editar" placeholder="Ingresar domicilio...">
+                        <label for="">Sintomas generales</label>
+                        <input type="text" class="form-control" id="txt_sintomas_generales_editar" placeholder="Ingresar datos..." maxlength="50"><br>
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Telefono</label>
-                        <input type="text" class="form-control" id="txt_tel_editar" placeholder="Ingresar telefono..." onkeypress="return soloNumeros(event)">
+                        <label for="">Organos de los sentidos</label>
+                        <input type="text" class="form-control" id="txt_organos_sentidos_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                    <label for="">Estado civil</label>
-                        <select class="js-example-basic-single" name="state_editar" id="cbm_estciv_editar" style="width:100%;"><br>
-                            <option value="CASADO">CASADO</option>
-                            <option value="SOLTERO">SOLTERO</option>
-                        </select><br><br>
+                        <label for="">Aparato cardiovascular</label>
+                        <input type="text" class="form-control" id="txt_aparato_cardiovascular_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Escolaridad</label>
-                        <input type="text" class="form-control" id="txt_esco_editar" placeholder="Ingresar escolaridad...">
+                        <label for="">Aparato respiratorio</label>
+                        <input type="text" class="form-control" id="txt_aparato_respiratorio_editar" placeholder="Ingresar datos..." maxlength="50"><br>
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Ocupacion</label>
-                        <input type="text" class="form-control" id="txt_ocup_editar" placeholder="Ingresar ocupacion..." onkeypress="return soloLetras(event)">
+                        <label for="">Aparato genitourinario</label>
+                        <input type="text" class="form-control" id="txt_aparato_genitour_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Lugar de nacimiento</label>
-                        <input type="text" class="form-control" id="txt_lunac_editar" placeholder="Ingresar lugar de nacimiento..." onkeypress="return soloLetras(event)"><br>
+                        <label for="">Aparato digestivo</label>
+                        <input type="text" class="form-control" id="txt_aparato_digestivo_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Residencia actual</label>
-                        <input type="text" class="form-control" id="txt_resiact_editar" placeholder="Ingresar residencia actual..." onkeypress="return soloLetras(event)">
+                        <label for="">Sistema endocrino</label>
+                        <input type="text" class="form-control" id="txt_sistema_endocrino_editar" placeholder="Ingresar datos..." maxlength="50"><br>
                     </div>
                     <div class="col-lg-4">
-                    <label for="">Derecho habiente</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_da_editar" style="width:100%;">
-                            <option value="SI">SI</option>
-                            <option value="NO">NO</option>
-                        </select><br><br>
+                        <label for="">Sistema nervioso</label>
+                        <input type="text" class="form-control" id="txt_sistema_nervioso_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Curp</label>
-                        <input type="text" class="form-control" id="txt_curp_editar" placeholder="Ingresar Curp..."><br>
+                        <label for="">Hemolinfatico</label>
+                        <input type="text" class="form-control" id="txt_hemolinfatico_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Nivel economico</label>
-                        <input type="text" class="form-control" id="txt_niveco_editar" placeholder="Ingresar nivel economico..." onkeypress="return soloLetras(event)">
+                        <label for="">Sistema osteomuscular</label>
+                        <input type="text" class="form-control" id="txt_sistema_ostemus_editar" placeholder="Ingresar datos..." maxlength="50"><br>
                     </div>
                     <div class="col-lg-4">
-                        <label for="">Grupo etnico</label>
-                        <input type="text" class="form-control" id="txt_grupet_editar" placeholder="Ingresar grupo etnico..." onkeypress="return soloLetras(event)">
+                        <label for="">Interrogatorios especiales</label>
+                        <input type="text" class="form-control" id="txt_interro_esp_editar" placeholder="Ingresar datos..." maxlength="50"><br><br>
+                    </div>
+                    <div class="col-lg-12" style="text-aling:center">
+                        <b>EXPLORACION FISICA</b><br><br>
                     </div>
                     <div class="col-lg-4">
-                    <label for="">Estatus</label>
-                        <select class="js-example-basic-single" name="state" id="cbm_estatus_editar" style="width:100%;">
-                            <option value="ACTIVO">ACTIVO</option>
-                            <option value="INACTIVO">INACTIVO</option>
-                        </select><br><br>
+                        <label for="">Habitus exterior</label>
+                        <input type="text" class="form-control" id="txt_habitus_exterior_editar" placeholder="Ingresar datos..." maxlength="50"><br>
+                    </div>
+                    <div class="col-lg-12" style="text-aling:center">
+                        <b>Signos vitales:</b><br><br>
                     </div>
                     <div class="col-lg-4">
+                        <label for="">Frecuencia cardiaca</label>
+                        <input type="text" class="form-control" id="txt_frecu_cardi_editar" placeholder="Ingresar datos..." maxlength="50">
                     </div>
-                    
+                    <div class="col-lg-4">
+                        <label for="">Tensión arterial</label>
+                        <input type="text" class="form-control" id="txt_tension_arterial_editar" placeholder="Ingresar datos..." maxlength="50">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Frecuencia respiratoria</label>
+                        <input type="text" class="form-control" id="txt_frecu_respiratoria_editar" placeholder="Ingresar datos..." maxlength="50"><br>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Temperatura</label>
+                        <input type="text" class="form-control" id="txt_temperatura_editar" placeholder="Ingresar datos..." maxlength="50">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Peso</label>
+                        <input type="text" class="form-control" id="txt_peso_editar" placeholder="Ingresar datos..." maxlength="50" onkeypress="calculoImc()">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Talla</label>
+                        <input type="text" class="form-control" id="txt_talla_editar" placeholder="Ingresar datos..." maxlength="50" onkeypress="calculoImc()">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">IMC</label>
+                        <input type="text" class="form-control" id="txt_icm_editar" placeholder="Ingresar datos..." maxlength="50" readonly=""><br><br>
+                    </div>
+                    <div class="col-lg-12" style="text-aling:center">
+                        <b>EXPLORACION REGIONAL</b><br><br>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Cabeza</label>
+                        <input type="text" class="form-control" id="txt_cabeza_editar" placeholder="Ingresar datos..." maxlength="50">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Cuello</label>
+                        <input type="text" class="form-control" id="txt_cuello_editar" placeholder="Ingresar datos..." maxlength="50">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Tórax</label>
+                        <input type="text" class="form-control" id="txt_torax_editar" placeholder="Ingresar datos..." maxlength="50"><br>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Abdomen</label>
+                        <input type="text" class="form-control" id="txt_abdomen_editar" placeholder="Ingresar datos..." maxlength="50">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Extremidades</label>
+                        <input type="text" class="form-control" id="txt_extremidades_editar" placeholder="Ingresar datos..." maxlength="50">
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Genitales</label>
+                        <input type="text" class="form-control" id="txt_genitales_editar" placeholder="Ingresar datos..." maxlength="50"><br>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Exploraciones especiales</label>
+                        <input type="text" class="form-control" id="txt_explo_esp_editar" placeholder="Ingresar datos..." maxlength="50"><br><br>   
+                    </div><br><br>
+                    <div class="col-lg-12" style="text-aling:center">
+                        <b>DIAGNOSTICOS, PRONOSTICOS Y TERAPEUTICA</b><br><br>
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="">Resultados de laboratorio y gabinete</label>
+                        <input type="text" class="form-control" id="txt_resultados_labgab_editar" placeholder="Ingresar datos..." maxlength="50">        
+                    </div> 
+                    <div class="col-lg-4">
+                        <label for="">Diagnósticos ó problemas clínicos</label>
+                        <input type="text" class="form-control" id="txt_diagnosticos_editar" placeholder="Ingresar datos..." maxlength="50">        
+                    </div> 
+                    <div class="col-lg-4">
+                        <label for="">Pronósticos</label>
+                        <input type="text" class="form-control" id="txt_pronostico_editar" placeholder="Ingresar datos..." maxlength="50"><br>        
+                    </div> 
+                    <div class="col-lg-4">
+                        <label for="">Indicación terapeutica</label>
+                        <input type="text" class="form-control" id="txt_indicacion_terap_editar" placeholder="Ingresar datos..." maxlength="50">        
+                    </div> 
+                    <div class="col-lg-4">
+                    </div>
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick="Modificar_Paciente()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick="Modificar_Historial()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
         </div>
-</div>    
-
+</div>  
+ 
 <script>
 
 $(document).ready(function() {

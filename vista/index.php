@@ -67,7 +67,7 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Navegación</span>
       </a>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -130,6 +130,9 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menú Principal</li>
         <li class="active treeview">
+          <?php
+          if($_SESSION['S_ROL'] == 'ADMINISTRADOR' ){
+          ?>
         <a onclick="cargar_contenido('contenido_principal','insumo/vista_insumo_listar.php')">
             <i class="fa fa-cubes"></i> <span>Insumos</span>
             <span class="pull-right-container">
@@ -190,6 +193,65 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+        <?php
+          }
+        ?>
+        <?php
+          if($_SESSION['S_ROL'] == 'RECEPCIONISTA' ){
+          ?>
+          <!-- Contenido que ve el usuario segun el rol -->
+          <a onclick="cargar_contenido('contenido_principal','cita/vista_cita_listar.php')">
+            <i class="fa fa-calendar-times-o "></i> <span>Citas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <?php
+          }
+        ?>
+          <?php
+          if($_SESSION['S_ROL'] == 'MEDICO' ){
+          ?>
+          <!-- Contenido que ve el usuario segun el rol -->
+          <a onclick="cargar_contenido('contenido_principal','insumo/vista_insumo_listar.php')">
+            <i class="fa fa-cubes"></i> <span>Insumos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <a onclick="cargar_contenido('contenido_principal','medicamento/vista_medicamento_listar.php')">
+            <i class="fa fa-medkit"></i> <span>Medicamentos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        <a onclick="cargar_contenido('contenido_principal','paciente/vista_paciente_listar.php')">
+            <i class="fa fa-user"></i> <span>Paciente</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <a onclick="cargar_contenido('contenido_principal','procedimiento/vista_procedimiento_listar.php')">
+            <i class="fa fa-spinner"></i> <span>Procedimientos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <a onclick="cargar_contenido('contenido_principal','consulta/vista_consulta_listar.php')">
+            <i class="fa fa-stethoscope "></i> <span>Consulta</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <a onclick="cargar_contenido('contenido_principal','historial/vista_historial_listar.php')">
+            <i class="fa fa-book"></i> <span>Historial Clinico</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <?php
+          }
+        ?>
         </li>
       </ul>
     </section>
